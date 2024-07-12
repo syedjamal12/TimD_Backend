@@ -1,4 +1,4 @@
-Use command:  npm install
+Use command:  npm install and then
 npm run dev/ npm start
 Make sure please add config file: Folder name-> config -> File name -> config.env
 and inside of config.env add your configuration like this type : 
