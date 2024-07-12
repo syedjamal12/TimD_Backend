@@ -1,5 +1,8 @@
+import dotenv from "dotenv";
+dotenv.config({ path: './config/config.env' }); // Load environment variables early
+
 import app from "./app.js";
-import cloudinary from "cloudinary"
+import cloudinary from "cloudinary";
 
 cloudinary.v2.config({
     cloud_name : process.env.CLOUDINARY_CLOUD_NAME,
@@ -9,5 +12,4 @@ cloudinary.v2.config({
 
 app.listen(process.env.PORT, ()=>{
     console.log(`server running on port ${process.env.PORT}`);
-}); 
-
+});

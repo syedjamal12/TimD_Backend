@@ -3,12 +3,15 @@ import mongoose from "mongoose";
 export const dbConnection = () => {
   mongoose
     .connect(process.env.MONGO_URI, {
-      dbName: "MERN_JOB_SEEKING_WEBAPP",
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000,  // 5 seconds timeout
     })
     .then(() => {
       console.log("Connected to database.");
     })
     .catch((err) => {
-      console.log(`Some Error occured. ${err}`);
+      console.error(`Database connection error: ${err}`);
+      process.exit(1);  // Exit process with failure
     });
 };

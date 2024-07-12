@@ -5,12 +5,13 @@ import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
 import jobRouter from './routes/jobRouter.js';
 import userRouter from './routes/userRouter.js';
-import applicationRouter from './routes/applicationRouter.js';
 import { dbConnection } from './database/dbConnection.js';
 import { errorMiddleware } from './middlewares/error.js';
 
-const app = express();
+// Load environment variables
 dotenv.config({ path: './config/config.env' });
+
+const app = express();
 
 // CORS configuration
 app.use(
@@ -19,11 +20,11 @@ app.use(
       methods:["GET", "POST", "PUT", "DELETE"],
       credentials: true,
   })
-)
+);
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
   fileUpload({
@@ -33,9 +34,8 @@ app.use(
 );
 
 // Your routers
-app.use('/api/v1/user', userRouter)
+app.use('/api/v1/user', userRouter);
 app.use('/api/v1/job', jobRouter);
-app.use('/api/v1/application', applicationRouter);
 
 // Database connection
 dbConnection();
